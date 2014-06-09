@@ -9,7 +9,7 @@
 
 pkgname=xcbnotif-git
 _pkgname=notification
-pkgver=r89.0083074
+pkgver=r91.1e57cef
 pkgrel=1
 pkgdesc='abook-muttgroups clone with line_color and change_color patches.'
 arch=('i686' 'x86_64')
