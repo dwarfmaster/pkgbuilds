@@ -1,0 +1,40 @@
+# Maintainer: Luc Chabassier <luc dot linux at mailoo dot org>
+# Contributor: Patrice Peterson <runiq at archlinux dot us>
+# Contributor: Peter Lewis <plewis at aur dot archlinux dot org>
+# Contributor: damir <damir at archlinux dot org>
+# Contributor: Thayer Williams <thayer at archlinux dot org>
+# Contributor: Daniel J Griffiths <ghost1227 at archlinux dot us>
+# Contributor: Gaetan Bisson <bisson at archlinux dot org>
+# Contributor: Fabio Zanini <fabio dot zanini at fastmail dot fm>
+
+pkgname=xcbnotif-git
+_pkgname=notification
+pkgver=r89.0083074
+pkgrel=1
+pkgdesc='abook-muttgroups clone with line_color and change_color patches.'
+arch=('i686' 'x86_64')
+url='https://github.com/lucas8/notification'
+license=('GPL2')
+depends=('readline')
+makedepends=('git' 'automake-1.12')
+provides=('abook')
+conflicts=('abook' 'abook-vcard' 'abook-muttgroups')
+source=('git+https://github.com/lucas8/notification.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd $_pkgname
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd $_pkgname
+  make
+}
+
+package() {
+  cd $_pkgname
+  install -d $pkgdir/usr/bin/
+  install xcbnotif $pkgdir/usr/bin/
+}
+
