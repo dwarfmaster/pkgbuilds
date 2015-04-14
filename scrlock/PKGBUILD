@@ -22,23 +22,24 @@ install=
 _gitroot='git://github.com/lucas8/scrlock.git'
 _gitname='scrlock'
 build() {
-	msg "Getting sources from github."
-	if [[ -d $_gitname ]] ; then
-		msg "Updating local sources."
-		cd $_gitname
-		git pull origin || return 1 
-	else
-		git clone $_gitroot || return 1
-		msg "Sources downloaded."
-		cd $_gitname
-	fi
+    msg "Getting sources from github."
+    if [[ -d $_gitname ]] ; then
+        msg "Updating local sources."
+        cd $_gitname
+        git pull origin || return 1 
+    else
+        git clone $_gitroot || return 1
+        msg "Sources downloaded."
+        cd $_gitname
+    fi
 
-	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 || return 1
+    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11 || return 1
 }
 
 package() {
-	cd $_gitname
-	make PREFIX=/usr DESTDIR="$pkgdir" install
-	install -m644 -D LICENSE "$pkgdir/usr/share/licences/scrlock/LICENCE"
+    cd $_gitname
+    git branch x11code
+    make PREFIX=/usr DESTDIR="$pkgdir" install
+    install -m644 -D LICENSE "$pkgdir/usr/share/licences/scrlock/LICENCE"
 }
 
