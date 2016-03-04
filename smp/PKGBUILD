@@ -1,0 +1,28 @@
+# Maintainer: Luc Chabassier <luc dot linux at mailoo dot org>
+
+pkgname=smp-git
+_pkgname=Shell-Music-Player
+pkgver=r4.9dd02d3
+pkgrel=1
+pkgdesc='A simple music player in shell'
+arch=('i686' 'x86_64')
+url='https://github.com/lucas8/Shell-Music-Player'
+license=('WTFPL')
+depends=()
+makedepends=('git')
+provides=()
+conflicts=()
+source=('git+https://github.com/lucas8/Shell-Music-Player.git')
+sha256sums=('SKIP')
+
+pkgver() {
+  cd $_pkgname
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package() {
+  cd $_pkgname
+  install -d $pkgdir/usr/bin/
+  install smp.sh $pkgdir/usr/bin/scm
+}
+
