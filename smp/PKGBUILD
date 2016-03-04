@@ -23,6 +23,6 @@ pkgver() {
 package() {
   cd $_pkgname
   install -d $pkgdir/usr/bin/
-  install smp.sh $pkgdir/usr/bin/scm
+  install smp.sh $pkgdir/usr/bin/smp
 }
 
